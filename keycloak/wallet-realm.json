@@ -1,0 +1,107 @@
+{
+  "realm": "wallet",
+  "enabled": true,
+  "registrationAllowed": false,
+  "editUsernameAllowed": false,
+  "accessTokenLifespan": 900,
+  "roles": {
+    "realm": [
+      { "name": "USER", "description": "Wallet owner" },
+      { "name": "OPERATOR", "description": "Back-office operator" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "wallet-cli",
+      "name": "Wallet demo client",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "protocolMappers": [
+        {
+          "name": "wallet-service-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.custom.audience": "wallet-service",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        },
+        {
+          "name": "realm-roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "claim.name": "roles",
+            "multivalued": "true",
+            "jsonType.label": "String",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "userinfo.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "alice",
+      "enabled": true,
+      "email": "alice@example.com",
+      "emailVerified": true,
+      "firstName": "Alice",
+      "lastName": "Demo",
+      "credentials": [ { "type": "password", "value": "alice", "temporary": false } ],
+      "realmRoles": [ "USER" ]
+    },
+    {
+      "username": "bob",
+      "enabled": true,
+      "email": "bob@example.com",
+      "emailVerified": true,
+      "firstName": "Bob",
+      "lastName": "Demo",
+      "credentials": [ { "type": "password", "value": "bob", "temporary": false } ],
+      "realmRoles": [ "USER" ]
+    },
+    {
+      "username": "carol",
+      "enabled": true,
+      "email": "carol@example.com",
+      "emailVerified": true,
+      "firstName": "Carol",
+      "lastName": "Demo",
+      "credentials": [ { "type": "password", "value": "carol", "temporary": false } ],
+      "realmRoles": [ "USER" ]
+    },
+    {
+      "username": "dave",
+      "enabled": true,
+      "email": "dave@example.com",
+      "emailVerified": true,
+      "firstName": "Dave",
+      "lastName": "Demo",
+      "credentials": [ { "type": "password", "value": "dave", "temporary": false } ],
+      "realmRoles": [ "USER" ]
+    },
+    {
+      "username": "operator",
+      "enabled": true,
+      "email": "operator@example.com",
+      "emailVerified": true,
+      "firstName": "Back",
+      "lastName": "Office",
+      "credentials": [ { "type": "password", "value": "operator", "temporary": false } ],
+      "realmRoles": [ "OPERATOR" ]
+    }
+  ]
+}

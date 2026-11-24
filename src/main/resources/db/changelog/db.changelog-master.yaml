@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/001-wallets-and-payments.sql
+  - include:
+      file: db/changelog/002-funding-requests.sql
+  - include:
+      file: db/changelog/demo/demo-data.sql

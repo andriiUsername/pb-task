@@ -1,0 +1,12 @@
+spring:
+  liquibase:
+    contexts: test
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://127.0.0.1:1/unreachable-jwks
+
+funding:
+  auto-payments:
+    cron: "-"

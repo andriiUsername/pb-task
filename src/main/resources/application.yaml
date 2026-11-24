@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: privatbank-task
+  profiles:
+    default: demo
+  datasource:
+    url: jdbc:postgresql://localhost:5432/wallet
+    username: wallet
+    password: wallet
+    hikari:
+      maximum-pool-size: 20
+      connection-timeout: 5000
+      connection-init-sql: SET lock_timeout = '5s'
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    contexts: production
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/wallet
+          jwk-set-uri: http://localhost:8180/realms/wallet/protocol/openid-connect/certs
+          audiences: wallet-service
+          authorities-claim-name: roles
+          authority-prefix: ROLE_
+          principal-claim-name: preferred_username
+
+app:
+  time-zone: Europe/Kyiv
+
+funding:
+  auto-payments:
+    cron: "0 * * * * *"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: demo
+  liquibase:
+    contexts: demo
