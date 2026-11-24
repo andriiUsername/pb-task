@@ -1,12 +1,10 @@
-# Сервіс гаманців
-
 ## Як запустити сервіс
 
-Потрібні Java 17+ і Docker:
+Потрібні Java 17, Maven і Docker:
 
 ```bash
 docker compose up -d --wait
-./mvnw spring-boot:run
+mvn spring-boot:run
 ```
 
 Сервіс стартує на http://localhost:8080, одразу після запуску є демо-дані:
@@ -18,7 +16,7 @@ docker compose up -d --wait
 ## Як запустити тести
 
 ```bash
-./mvnw test
+mvn test
 ```
 
 Потрібен лише Docker.
